@@ -3,6 +3,14 @@
     <ion-title>
       {{ title }}
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleSearchBar()">
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="showSearchBar" color="primary">
+    <ion-searchbar (ionInput)="onSearchChange($event)"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
