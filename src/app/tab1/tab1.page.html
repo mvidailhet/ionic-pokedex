@@ -13,4 +13,19 @@
     </ion-toolbar>
   </ion-header>
 
+  <ion-list lines="full">
+    <ion-item *ngFor="let pokemon of pokemons; let index = index">
+      <ion-thumbnail slot="start">
+        <img [alt]="pokemon.name.fr" [src]="pokemon.sprites.regular" />
+      </ion-thumbnail>
+      <ion-label>
+        {{ pokemon.pokedexId }}
+        {{ pokemon.name.fr }}
+      </ion-label>
+      <ion-thumbnail *ngFor="let type of pokemon.types" slot="end">
+        <img [alt]="type.name" [src]="type.image" />
+      </ion-thumbnail>
+    </ion-item>
+  </ion-list>
+
 </ion-content>

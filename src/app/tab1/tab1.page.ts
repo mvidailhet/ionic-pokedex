@@ -9,11 +9,13 @@ import { Pokemon } from '../models/pokemons';
 })
 export class Tab1Page {
   title = 'Tous les pokémons';
+  pokemons?: Pokemon[];
 
   constructor(private apiService: ApiService) {
 
     this.apiService.getPokemons().subscribe((pokemons: Pokemon[]) => {
-      console.log(pokemons);
+      this.pokemons = pokemons.filter((pokemons: Pokemon, index: number) => index > 0 && index < 151);
+      console.log(this.pokemons);
     });
 
   }

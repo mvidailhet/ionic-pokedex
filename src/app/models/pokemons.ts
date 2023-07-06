@@ -4,7 +4,7 @@ export interface Pokemon {
   pokedexId:   number;
   generation:  number;
   category:    string;
-  name:        NameClass;
+  name:        NameLanguages;
   sprites:     Sprites;
   types:       Type[] | null;
   talents:     Talent[] | null;
@@ -68,7 +68,7 @@ export interface Forme {
   paldea?: string;
 }
 
-export interface NameClass {
+export interface NameLanguages {
   fr: string;
   en: string;
   jp: string;
