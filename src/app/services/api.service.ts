@@ -14,4 +14,8 @@ export class ApiService {
   getPokemons(): Observable<Pokemon[]> {
     return this.http.get<Pokemon[]>(this.apiUrl);
   }
+
+  getPokemon(name: string): Observable<Pokemon> {
+    return this.http.get<Pokemon>(`${this.apiUrl}/${name}`)
+  }
 }

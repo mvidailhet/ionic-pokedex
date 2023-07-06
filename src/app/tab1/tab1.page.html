@@ -14,7 +14,7 @@
   </ion-header>
 
   <ion-list lines="full">
-    <ion-item *ngFor="let pokemon of pokemons; let index = index">
+    <ion-item *ngFor="let pokemon of pokemons; let index = index" (click)="goToPokemonPage(pokemon.name.fr)">
       <ion-thumbnail slot="start">
         <img [alt]="pokemon.name.fr" [src]="pokemon.sprites.regular" />
       </ion-thumbnail>

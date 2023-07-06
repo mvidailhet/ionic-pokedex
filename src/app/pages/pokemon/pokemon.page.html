@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title>pokemon</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">pokemon</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ng-container *ngIf="pokemon">
+    <h1 class="ion-text-center">{{ pokemon.pokedexId }} - {{ pokemon.name.fr }}</h1>
+
+    <div class="ion-text-center">
+      <img [src]="pokemon.sprites.regular" [alt]="pokemon.name.fr" />
+    </div>
+
+
+    <ion-grid class="ion-margin-top">
+      <ion-row>
+        <ion-col *ngFor="let type of pokemon.types" class="ion-text-center">
+          <img class="pokemon-type-img" [alt]="type.name" [src]="type.image" />
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+
+  </ng-container>
+
+</ion-content>
