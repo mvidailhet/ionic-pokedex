@@ -22,8 +22,8 @@
         {{ pokemon.pokedexId }}
         {{ pokemon.name.fr }}
       </ion-label>
-      <ion-thumbnail *ngFor="let type of pokemon.types" slot="end">
-        <img [alt]="type.name" [src]="type.image" />
+      <ion-thumbnail class="pokemon-types-img" slot="end">
+        <img *ngFor="let type of pokemon.types" class="pokemon-type-img" [alt]="type.name" [src]="type.image" />
       </ion-thumbnail>
     </ion-item>
   </ion-list>

@@ -1,0 +1,14 @@
+.pokemon-type-img {
+  width: 24px;
+  height: auto;
+  margin-right: 8px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.pokemon-types-img {
+  display: flex;
+  align-items: center;
+}
