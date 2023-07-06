@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { ApiService } from '../services/api.service';
-import { Pokemon } from '../models/pokemons';
-import { Utils } from '../utils/utils';
+import { ApiService } from '../../services/api.service';
+import { Pokemon } from '../../models/pokemons';
+import { Utils } from '../../utils/utils';
 import { Router } from '@angular/router';
 
 @Component({
