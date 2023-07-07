@@ -24,39 +24,8 @@
   </ion-list>
 </ion-content>
 
-<!-- <ion-footer>
-  <ion-toolbar>
-    <ion-row class="pagination-container ion-padding-top">
-      <ng-container *ngFor="let page of pages; let index = index">
-        <ion-col
-          class="ion-justify-content-center ion-align-items-center dots-col"
-          *ngIf="areFirstPageDotsShown(index + 1)"
-        >
-          ...
-        </ion-col>
-        <ion-col
-          *ngIf="isPageButtonShown(index + 1)"
-          class="ion-justify-content-center"
-        >
-          <ion-button
-            [disabled]="index + 1 === currentPage"
-            (click)="goToPage(index + 1)"
-            >{{ index + 1 }}</ion-button
-          >
-        </ion-col>
-        <ion-col
-          class="ion-justify-content-center ion-align-items-center dots-col"
-          *ngIf="areLastPageDotsShown(index + 1)"
-        >
-          ...
-        </ion-col>
-      </ng-container>
-    </ion-row>
-  </ion-toolbar>
-</ion-footer> -->
-
 <ion-footer>
   <ion-toolbar>
-    <app-pagination [currentPage]="currentPage" (onPageChange)="goToPage($event)" [nbTotalElements]="nbTotalElements" [nbElementsPerPage]="nbPokemonsPerPage" ></app-pagination>
+    <app-pagination paginationStyle="dots" [currentPage]="currentPage" (onPageChange)="goToPage($event)" [nbTotalElements]="nbTotalElements" [nbElementsPerPage]="nbPokemonsPerPage" ></app-pagination>
   </ion-toolbar>
 </ion-footer>

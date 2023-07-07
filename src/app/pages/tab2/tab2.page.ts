@@ -33,24 +33,4 @@ export class Tab2Page {
       this.currentPage = page;
     });
   }
-
-/*   isPageButtonShown(page: number) {
-    return (
-      page === this.currentPage ||
-      page === this.currentPage - 1 ||
-      page === this.currentPage + 1 ||
-      page === 1 ||
-      page === this.nbTotalPage
-    );
-  } */
-
-/*   areFirstPageDotsShown(page: number) {
-    const res = page >= 2 && page === this.currentPage - 2;
-    return res;
-  }
-
-  areLastPageDotsShown(page: number) {
-    const res = page <= this.nbTotalPage - 1 && page === this.currentPage + 2;
-    return res;
-  } */
 }
