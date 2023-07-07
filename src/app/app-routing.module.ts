@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { ScreenResizePage } from './pages/screen-resize/screen-resize.page';
 
 const routes: Routes = [
   {
@@ -9,6 +10,10 @@ const routes: Routes = [
   {
     path: 'pokemon',
     loadChildren: () => import('./pages/pokemon/pokemon.module').then( m => m.PokemonPageModule)
+  },
+  {
+    path: 'screen',
+    component: ScreenResizePage
   }
 ];
 @NgModule({
