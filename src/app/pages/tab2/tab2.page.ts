@@ -12,6 +12,7 @@ export class Tab2Page {
   title = 'Mes pokémons';
   allPokemons?: Pokemon[];
   nbPokemonsPerPage = 20;
+  nbTotalElements = 0;
   currentPage = 1;
   nbTotalPage = 0;
   pages: number[] = [];
@@ -30,7 +31,7 @@ export class Tab2Page {
   goToPage(page = 1) {
     this.getPokemonsForPage(page).subscribe((pokemons: APIPokemons) => {
       this.allPokemons = pokemons.results;
-      this.nbTotalPage = Math.ceil(pokemons.count / this.nbPokemonsPerPage);
+      this.nbTotalElements = pokemons.count;
       this.pages = Array(this.nbTotalPage);
       this.currentPage = page;
     });
