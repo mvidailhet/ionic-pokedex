@@ -31,14 +31,8 @@
 <ion-footer>
   <ion-toolbar>
     <ion-row class="pagination-container ion-padding-top">
-      <ion-col class="ion-text-center">
-        <ion-button (click)="goToPage(2)">2</ion-button>
-      </ion-col>
-      <ion-col class="ion-text-center">
-        <ion-button (click)="goToPage(3)">3</ion-button>
-      </ion-col>
-      <ion-col class="ion-text-center">
-        <ion-button (click)="goToPage(4)">4</ion-button>
+      <ion-col *ngFor="let page of pages; let index = index" class="ion-text-center">
+        <ion-button [disabled]="index + 1 === currentPage" (click)="goToPage(index + 1)">{{ index + 1 }}</ion-button>
       </ion-col>
     </ion-row>
 

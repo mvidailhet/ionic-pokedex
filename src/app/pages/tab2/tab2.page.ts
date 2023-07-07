@@ -13,6 +13,8 @@ export class Tab2Page {
   allPokemons?: Pokemon[];
   nbPokemonsPerPage = 20;
   currentPage = 1;
+  nbTotalPage = 0;
+  pages: number[] = [];
 
   constructor(private pokeApiService: PokeapiService, private router: Router) {
     this.goToPage(this.currentPage);
@@ -26,6 +28,9 @@ export class Tab2Page {
     this.getPokemonsForPage(page).subscribe((pokemons: APIPokemons) => {
       this.allPokemons = pokemons.results;
       console.log(pokemons);
+      this.nbTotalPage = Math.ceil(pokemons.count / this.nbPokemonsPerPage);
+      this.pages = Array(this.nbTotalPage);
+      console.log(this.pages);
     });
   }
 
