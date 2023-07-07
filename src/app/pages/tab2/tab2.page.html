@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      {{ title }}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,7 +9,21 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      <ion-title size="large">{{ title }}</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-list lines="full">
+    <ion-item *ngFor="let pokemon of allPokemons; let index = index">
+<!--       <ion-thumbnail slot="start">
+        <img [alt]="pokemon.name.fr" [src]="pokemon.sprites.regular" />
+      </ion-thumbnail> -->
+      <ion-label>
+        {{ pokemon.name }}
+      </ion-label>
+<!--       <ion-thumbnail class="pokemon-types-img" slot="end">
+        <img *ngFor="let type of pokemon.types" class="pokemon-type-img" [alt]="type.name" [src]="type.image" />
+      </ion-thumbnail> -->
+    </ion-item>
+  </ion-list>
 </ion-content>

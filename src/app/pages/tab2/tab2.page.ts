@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { APIPokemons, Pokemon } from 'src/app/models/pa-pokemons';
 import { PokeapiService } from 'src/app/services/pokeapi.service';
 
 @Component({
@@ -9,16 +10,12 @@ import { PokeapiService } from 'src/app/services/pokeapi.service';
 })
 export class Tab2Page {
   title = "Mes pokémons";
-  allPokemons?: any[];
+  allPokemons?: Pokemon[];
 
   constructor(private pokeApiService: PokeapiService, private router: Router) {
-    this.pokeApiService.getPokemons().subscribe((pokemons: any) => {
+    this.pokeApiService.getPokemons().subscribe((pokemons: APIPokemons) => {
+      this.allPokemons = pokemons.results;
       console.log(pokemons);
-/*       this.allPokemons = pokemons.filter(
-        (pokemons: Pokemon, index: number) => index > 0 && index < 151
-      );
-      this.pokemons = this.allPokemons;
-      console.log(this.pokemons); */
     });
   }
 
