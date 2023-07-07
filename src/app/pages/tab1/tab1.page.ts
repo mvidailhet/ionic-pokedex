@@ -3,6 +3,7 @@ import { ApiService } from '../../services/api.service';
 import { Pokemon } from '../../models/pokemons';
 import { Utils } from '../../utils/utils';
 import { Router } from '@angular/router';
+import { PaginationService } from 'src/app/services/pagination.service';
 
 @Component({
   templateUrl: 'tab1.page.html',
@@ -15,7 +16,11 @@ export class Tab1Page {
   showSearchBar = false;
   currentSearch = '';
 
-  constructor(private apiService: ApiService, private router: Router) {
+  constructor(
+    private apiService: ApiService,
+    private router: Router,
+    public paginationService: PaginationService
+  ) {
     this.apiService.getPokemons().subscribe((pokemons: Pokemon[]) => {
       this.allPokemons = pokemons.filter(
         (pokemons: Pokemon, index: number) => index > 0 && index < 151
@@ -31,7 +36,7 @@ export class Tab1Page {
 
     if (this.currentSearch.length < 3) {
       this.currentSearch = '';
-    };
+    }
 
     this.filterPokemonsByCurrentSearch();
   }

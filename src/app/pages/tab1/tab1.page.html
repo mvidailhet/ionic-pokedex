@@ -21,6 +21,8 @@
     </ion-toolbar>
   </ion-header>
 
+  <h1 class="ion-text-center">{{ paginationService.params.currentPage }}</h1>
+
   <ion-list lines="full">
     <ion-item *ngFor="let pokemon of pokemons; let index = index" (click)="goToPokemonPage(pokemon.name.fr)">
       <ion-thumbnail slot="start">
