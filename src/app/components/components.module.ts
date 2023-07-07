@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PaginationComponent } from './pagination/pagination.component';
 import { IonicModule } from '@ionic/angular';
-
+import { DotsPaginationComponent } from './dots-pagination/dots-pagination.component';
+import { ScrollPaginationComponent } from './scroll-pagination/scroll-pagination.component';
 
 
 @NgModule({
-  declarations: [PaginationComponent],
+  declarations: [DotsPaginationComponent, ScrollPaginationComponent],
   imports: [
     IonicModule,
     CommonModule
   ],
-  exports: [PaginationComponent],
+  exports: [DotsPaginationComponent, ScrollPaginationComponent],
 })
 export class ComponentsModule { }

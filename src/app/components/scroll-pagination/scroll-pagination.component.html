@@ -1,0 +1,12 @@
+<div class="pagination-container ion-padding-top">
+  <div
+    *ngFor="let page of pages; let index = index"
+    class="ion-justify-content-center"
+  >
+    <ion-button
+      [disabled]="index + 1 === currentPage"
+      (click)="goToPage(index + 1)"
+      >{{ index + 1 }}</ion-button
+    >
+  </div>
+</div>

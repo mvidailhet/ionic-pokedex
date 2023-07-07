@@ -26,6 +26,6 @@
 
 <ion-footer>
   <ion-toolbar>
-    <app-pagination paginationStyle="dots" [currentPage]="currentPage" (onPageChange)="goToPage($event)" [nbTotalElements]="nbTotalElements" [nbElementsPerPage]="nbPokemonsPerPage" ></app-pagination>
+    <app-dots-pagination [currentPage]="currentPage" (onPageChange)="goToPage($event)" [nbTotalElements]="nbTotalElements" [nbElementsPerPage]="nbPokemonsPerPage" ></app-dots-pagination>
   </ion-toolbar>
 </ion-footer>
