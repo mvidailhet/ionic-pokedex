@@ -24,24 +24,50 @@
   </ion-list>
 </ion-content>
 
-<ion-footer>
+<!-- <ion-footer>
   <ion-toolbar>
     <ion-row class="pagination-container ion-padding-top">
       <ng-container *ngFor="let page of pages; let index = index">
-        <ion-col class="ion-justify-content-center ion-align-items-center dots-col" *ngIf="areFirstPageDotsShown(index + 1)">
+        <ion-col
+          class="ion-justify-content-center ion-align-items-center dots-col"
+          *ngIf="areFirstPageDotsShown(index + 1)"
+        >
           ...
         </ion-col>
-        <ion-col *ngIf="isPageButtonShown(index + 1)" class="ion-justify-content-center">
+        <ion-col
+          *ngIf="isPageButtonShown(index + 1)"
+          class="ion-justify-content-center"
+        >
           <ion-button
             [disabled]="index + 1 === currentPage"
             (click)="goToPage(index + 1)"
             >{{ index + 1 }}</ion-button
           >
         </ion-col>
-        <ion-col class="ion-justify-content-center ion-align-items-center dots-col" *ngIf="areLastPageDotsShown(index + 1)">
+        <ion-col
+          class="ion-justify-content-center ion-align-items-center dots-col"
+          *ngIf="areLastPageDotsShown(index + 1)"
+        >
           ...
         </ion-col>
       </ng-container>
     </ion-row>
+  </ion-toolbar>
+</ion-footer> -->
+
+<ion-footer>
+  <ion-toolbar>
+    <div class="all-pagination-container ion-padding-top">
+      <div
+        *ngFor="let page of pages; let index = index"
+        class="ion-justify-content-center"
+      >
+        <ion-button
+          [disabled]="index + 1 === currentPage"
+          (click)="goToPage(index + 1)"
+          >{{ index + 1 }}</ion-button
+        >
+      </div>
+    </div>
   </ion-toolbar>
 </ion-footer>
