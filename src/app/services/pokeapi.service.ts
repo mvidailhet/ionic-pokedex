@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { APIPokemons } from '../models/pa-pokemons';
 
@@ -10,7 +10,10 @@ export class PokeapiService {
 
   constructor(private http: HttpClient) { }
 
-  getPokemons() {
-    return this.http.get<APIPokemons>(this.apiUrl);
+  getPokemons(limit = 20, offset = 0) {
+    let params = new HttpParams();
+    params = params.set('offset', offset);
+    params = params.set('limit', limit);
+    return this.http.get<APIPokemons>(this.apiUrl, { params });
   }
 }

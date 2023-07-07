@@ -11,9 +11,19 @@ import { PokeapiService } from 'src/app/services/pokeapi.service';
 export class Tab2Page {
   title = "Mes pokémons";
   allPokemons?: Pokemon[];
+  nbPokemonsPerPage = 20;
+  currentPage = 1;
 
   constructor(private pokeApiService: PokeapiService, private router: Router) {
-    this.pokeApiService.getPokemons().subscribe((pokemons: APIPokemons) => {
+    this.goToPage(this.currentPage);
+  }
+
+  getPokemonsForPage(page = 1) {
+    return this.pokeApiService.getPokemons(this.nbPokemonsPerPage, (page - 1) * this.nbPokemonsPerPage);
+  }
+
+  goToPage(page = 1) {
+    this.getPokemonsForPage(page).subscribe((pokemons: APIPokemons) => {
       this.allPokemons = pokemons.results;
       console.log(pokemons);
     });
