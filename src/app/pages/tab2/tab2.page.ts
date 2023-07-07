@@ -6,10 +6,10 @@ import { PokeapiService } from 'src/app/services/pokeapi.service';
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss']
+  styleUrls: ['tab2.page.scss'],
 })
 export class Tab2Page {
-  title = "Mes pokémons";
+  title = 'Mes pokémons';
   allPokemons?: Pokemon[];
   nbPokemonsPerPage = 20;
   currentPage = 1;
@@ -21,17 +21,38 @@ export class Tab2Page {
   }
 
   getPokemonsForPage(page = 1) {
-    return this.pokeApiService.getPokemons(this.nbPokemonsPerPage, (page - 1) * this.nbPokemonsPerPage);
+    return this.pokeApiService.getPokemons(
+      this.nbPokemonsPerPage,
+      (page - 1) * this.nbPokemonsPerPage
+    );
   }
 
   goToPage(page = 1) {
     this.getPokemonsForPage(page).subscribe((pokemons: APIPokemons) => {
       this.allPokemons = pokemons.results;
-      console.log(pokemons);
       this.nbTotalPage = Math.ceil(pokemons.count / this.nbPokemonsPerPage);
       this.pages = Array(this.nbTotalPage);
-      console.log(this.pages);
+      this.currentPage = page;
     });
   }
 
+  isPageButtonShown(page: number) {
+    return (
+      page === this.currentPage ||
+      page === this.currentPage - 1 ||
+      page === this.currentPage + 1 ||
+      page === 1 ||
+      page === this.nbTotalPage
+    );
+  }
+
+  areFirstPageDotsShown(page: number) {
+    const res = page >= 2 && page === this.currentPage - 2;
+    return res;
+  }
+
+  areLastPageDotsShown(page: number) {
+    const res = page <= this.nbTotalPage - 1 && page === this.currentPage + 2;
+    return res;
+  }
 }

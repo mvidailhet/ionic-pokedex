@@ -1,8 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      {{ title }}
-    </ion-title>
+    <ion-title> {{ title }} </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -15,13 +13,11 @@
 
   <ion-list lines="full">
     <ion-item *ngFor="let pokemon of allPokemons; let index = index">
-<!--       <ion-thumbnail slot="start">
+      <!--       <ion-thumbnail slot="start">
         <img [alt]="pokemon.name.fr" [src]="pokemon.sprites.regular" />
       </ion-thumbnail> -->
-      <ion-label>
-        {{ pokemon.name }}
-      </ion-label>
-<!--       <ion-thumbnail class="pokemon-types-img" slot="end">
+      <ion-label> {{ pokemon.name }} </ion-label>
+      <!--       <ion-thumbnail class="pokemon-types-img" slot="end">
         <img *ngFor="let type of pokemon.types" class="pokemon-type-img" [alt]="type.name" [src]="type.image" />
       </ion-thumbnail> -->
     </ion-item>
@@ -31,10 +27,21 @@
 <ion-footer>
   <ion-toolbar>
     <ion-row class="pagination-container ion-padding-top">
-      <ion-col *ngFor="let page of pages; let index = index" class="ion-text-center">
-        <ion-button [disabled]="index + 1 === currentPage" (click)="goToPage(index + 1)">{{ index + 1 }}</ion-button>
-      </ion-col>
+      <ng-container *ngFor="let page of pages; let index = index">
+        <ion-col class="ion-justify-content-center ion-align-items-center dots-col" *ngIf="areFirstPageDotsShown(index + 1)">
+          ...
+        </ion-col>
+        <ion-col *ngIf="isPageButtonShown(index + 1)" class="ion-justify-content-center">
+          <ion-button
+            [disabled]="index + 1 === currentPage"
+            (click)="goToPage(index + 1)"
+            >{{ index + 1 }}</ion-button
+          >
+        </ion-col>
+        <ion-col class="ion-justify-content-center ion-align-items-center dots-col" *ngIf="areLastPageDotsShown(index + 1)">
+          ...
+        </ion-col>
+      </ng-container>
     </ion-row>
-
   </ion-toolbar>
 </ion-footer>
