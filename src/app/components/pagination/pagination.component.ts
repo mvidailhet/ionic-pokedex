@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-pagination',
@@ -19,6 +19,8 @@ export class PaginationComponent {
   @Input() nbElementsPerPage = 0;
   @Input() currentPage = 0;
 
+  @Output() onPageChange = new EventEmitter<number>();
+
   nbTotalPages = 0;
 
   pages?: number[];
@@ -26,13 +28,11 @@ export class PaginationComponent {
   private calculatePages() {
     if (this.nbTotalElements === 0) return;
     this.nbTotalPages = Math.ceil(this.nbTotalElements / this.nbElementsPerPage);
-    console.log(this.nbTotalElements);
     const tempArray = Array(this.nbTotalPages);
     this.pages = Array.from(tempArray, x => 1);
-    console.log(this.pages);
   }
 
   goToPage(page: number) {
-
+    this.onPageChange.emit(page);
   }
 }

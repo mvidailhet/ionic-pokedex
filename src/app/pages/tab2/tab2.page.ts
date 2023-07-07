@@ -14,8 +14,6 @@ export class Tab2Page {
   nbPokemonsPerPage = 20;
   nbTotalElements = 0;
   currentPage = 1;
-  nbTotalPage = 0;
-  pages: number[] = [];
 
   constructor(private pokeApiService: PokeapiService, private router: Router) {
     this.goToPage(this.currentPage);
@@ -32,12 +30,11 @@ export class Tab2Page {
     this.getPokemonsForPage(page).subscribe((pokemons: APIPokemons) => {
       this.allPokemons = pokemons.results;
       this.nbTotalElements = pokemons.count;
-      this.pages = Array(this.nbTotalPage);
       this.currentPage = page;
     });
   }
 
-  isPageButtonShown(page: number) {
+/*   isPageButtonShown(page: number) {
     return (
       page === this.currentPage ||
       page === this.currentPage - 1 ||
@@ -45,9 +42,9 @@ export class Tab2Page {
       page === 1 ||
       page === this.nbTotalPage
     );
-  }
+  } */
 
-  areFirstPageDotsShown(page: number) {
+/*   areFirstPageDotsShown(page: number) {
     const res = page >= 2 && page === this.currentPage - 2;
     return res;
   }
@@ -55,5 +52,5 @@ export class Tab2Page {
   areLastPageDotsShown(page: number) {
     const res = page <= this.nbTotalPage - 1 && page === this.currentPage + 2;
     return res;
-  }
+  } */
 }
