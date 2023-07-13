@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { APIPokemons, Pokemon } from 'src/app/models/pa-pokemons';
-import { PaginationService } from 'src/app/services/pagination.service';
 import { PokeapiService } from 'src/app/services/pokeapi.service';
 
 @Component({
@@ -16,8 +15,7 @@ export class Tab2Page {
   currentPage = 1;
 
   constructor(
-    private pokeApiService: PokeapiService,
-    public paginationService: PaginationService
+    private pokeApiService: PokeapiService
   ) {
     this.goToPage(this.currentPage);
   }
@@ -34,7 +32,6 @@ export class Tab2Page {
       this.allPokemons = pokemons.results;
       this.nbTotalElements = pokemons.count;
       this.currentPage = page;
-      this.paginationService.params = { currentPage: this.currentPage };
     });
   }
 }

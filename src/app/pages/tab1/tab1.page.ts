@@ -3,9 +3,7 @@ import { ApiService } from '../../services/api.service';
 import { Pokemon } from '../../models/pokemons';
 import { Utils } from '../../utils/utils';
 import { Router } from '@angular/router';
-import { PaginationService } from 'src/app/services/pagination.service';
 import { Observable, catchError, delay, interval, map, of, switchMap, tap } from 'rxjs';
-import { PokeapiService } from 'src/app/services/pokeapi.service';
 
 @Component({
   templateUrl: 'tab1.page.html',
@@ -20,9 +18,7 @@ export class Tab1Page implements OnDestroy {
 
   constructor(
     private apiService: ApiService,
-    private apiService2: PokeapiService,
     private router: Router,
-    public paginationService: PaginationService
   ) {
     this.createAndSubsbscribeObservable();
     this.apiService.getPokemons().subscribe((pokemons: Pokemon[]) => {
