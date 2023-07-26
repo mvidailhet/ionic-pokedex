@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import {
-  EMPTY,
-  catchError,
-  concatMap,
   delay,
   from,
   map,
@@ -44,6 +41,10 @@ export class Tab2Page {
     );
   }
 
+  isPAPokemon(pokemon: PAPokemonSimple | PAPokemon): pokemon is PAPokemon {
+    return (pokemon as PAPokemon).id !== undefined;
+  }
+
   goToPage(page = 1) {
     this.getPokemonsForPage(page)
       .pipe(
@@ -56,23 +57,11 @@ export class Tab2Page {
         delay(2000),
         switchMap((pokemons: PAPokemons) => from(pokemons.results)),
         mergeMap((pokemon: PAPokemonSimple, index: number) => {
-          if (index === 2) {
-            return zip(
-              of(index),
-              this.pokeApiService.getPokemon('lolilol').pipe(
-                delay(1000),
-                catchError((error) => {
-                  console.error(error);
-                  return EMPTY;
-                })
-              )
-            );
-          }
           return zip(
             of(index),
             this.pokeApiService.getPokemon(pokemon.name).pipe(delay(1000))
           );
-        }),
+        })
       )
       .subscribe(([index, pokemon]: [number, PAPokemon]) => {
         if (!this.currentPokemons) return;
