@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import {
   delay,
   from,
-  map,
   mergeMap,
   of,
   switchMap,
@@ -24,9 +23,9 @@ import { PokeapiService } from 'src/app/services/pokeapi.service';
 })
 export class Tab2Page {
   title = 'Mes pokémons';
-  allPokemons?: (PAPokemonSimple | PAPokemon)[];
   currentPokemons?: (PAPokemonSimple | PAPokemon)[];
-  nbPokemonsPerPage = 5;
+  pokemonPages: { [key: number]: (PAPokemonSimple | PAPokemon)[] } = {};
+  nbPokemonsPerPage = 20;
   nbTotalElements = 0;
   currentPage = 1;
 
@@ -46,10 +45,14 @@ export class Tab2Page {
   }
 
   goToPage(page = 1) {
+    if (this.pokemonPages[page]) {
+      this.currentPokemons = this.pokemonPages[page];
+      this.currentPage = page;
+      return;
+    }
     this.getPokemonsForPage(page)
       .pipe(
         tap((pokemons: PAPokemons) => {
-          this.allPokemons = pokemons.results;
           this.currentPokemons = pokemons.results;
           this.nbTotalElements = pokemons.count;
           this.currentPage = page;
@@ -59,15 +62,16 @@ export class Tab2Page {
         mergeMap((pokemon: PAPokemonSimple, index: number) => {
           return zip(
             of(index),
-            this.pokeApiService.getPokemon(pokemon.name).pipe(delay(1000))
+            this.pokeApiService.getPokemon(pokemon.name)
           );
         })
       )
       .subscribe(([index, pokemon]: [number, PAPokemon]) => {
         if (!this.currentPokemons) return;
         this.currentPokemons[index] = pokemon;
-        console.log(index);
-        console.log(pokemon);
+
+        if (!this.pokemonPages[page]) this.pokemonPages[page] = [];
+        this.pokemonPages[page][index] = pokemon;
       });
   }
 
