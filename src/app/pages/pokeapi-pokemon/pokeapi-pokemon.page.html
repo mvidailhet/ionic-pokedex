@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ng-container *ngIf="pokemon">
+    <h1 class="ion-text-center">{{ pokemon.id }} - {{ pokemon.name }}</h1>
+
+    <div class="ion-text-center">
+      <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" />
+    </div>
+
+
+    <ion-grid class="ion-margin-top">
+      <ion-row>
+        <ion-col *ngFor="let type of pokemon.types" class="ion-text-center">
+          {{ type.type.name }}
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+
+  </ng-container>
+
+</ion-content>

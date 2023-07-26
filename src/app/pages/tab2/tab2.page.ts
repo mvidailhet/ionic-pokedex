@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { APIPokemons, Pokemon } from 'src/app/models/pa-pokemons';
+import { Router } from '@angular/router';
+import { PAPokemons, PAPokemonSimple } from 'src/app/models/pa-pokemons';
 import { PokeapiService } from 'src/app/services/pokeapi.service';
 
 @Component({
@@ -9,13 +10,14 @@ import { PokeapiService } from 'src/app/services/pokeapi.service';
 })
 export class Tab2Page {
   title = 'Mes pokémons';
-  allPokemons?: Pokemon[];
+  allPokemons?: PAPokemonSimple[];
   nbPokemonsPerPage = 20;
   nbTotalElements = 0;
   currentPage = 1;
 
   constructor(
-    private pokeApiService: PokeapiService
+    private pokeApiService: PokeapiService,
+    private router: Router
   ) {
     this.goToPage(this.currentPage);
   }
@@ -28,10 +30,14 @@ export class Tab2Page {
   }
 
   goToPage(page = 1) {
-    this.getPokemonsForPage(page).subscribe((pokemons: APIPokemons) => {
+    this.getPokemonsForPage(page).subscribe((pokemons: PAPokemons) => {
       this.allPokemons = pokemons.results;
       this.nbTotalElements = pokemons.count;
       this.currentPage = page;
     });
+  }
+
+  goToPokemonPage(name: string) {
+    this.router.navigate(['/pokeapi-pokemon', name]);
   }
 }

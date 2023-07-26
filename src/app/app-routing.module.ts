@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path: 'screen',
     component: ScreenResizePage
+  },
+  {
+    path: 'pokeapi-pokemon',
+    loadChildren: () => import('./pages/pokeapi-pokemon/pokeapi-pokemon.module').then( m => m.PokeapiPokemonPageModule)
   }
 ];
 @NgModule({
