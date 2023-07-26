@@ -13,6 +13,15 @@
 
   <ion-list lines="full">
     <ion-item *ngFor="let pokemon of allPokemons; let index = index" (click)="goToPokemonPage(pokemon.name)">
+      <ion-thumbnail slot="start" *ngIf="isPaPokemon(pokemon); else spinner">
+        <img *ngIf="pokemon.sprites.front_default" [alt]="pokemon.name" [src]="pokemon.sprites.front_default" />
+      </ion-thumbnail>
+      <ng-template #spinner>
+        <ion-thumbnail slot="start">
+          <ion-spinner name="crescent"></ion-spinner>
+        </ion-thumbnail>
+      </ng-template>
+
       <ion-label> {{ pokemon.name }} </ion-label>
     </ion-item>
   </ion-list>
