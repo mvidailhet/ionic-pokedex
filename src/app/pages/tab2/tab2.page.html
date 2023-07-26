@@ -12,7 +12,7 @@
   </ion-header>
 
   <ion-list lines="full">
-    <ion-item *ngFor="let pokemon of allPokemons; let index = index" (click)="goToPokemonPage(pokemon.name)">
+    <ion-item *ngFor="let pokemon of currentPokemons; let index = index" (click)="goToPokemonPage(pokemon.name)">
       <ion-label> {{ pokemon.name }} </ion-label>
     </ion-item>
   </ion-list>
